@@ -33,7 +33,6 @@ public class Invetory : MonoBehaviour
 
     public bool AddItem(Item _item)
     {
-        Debug.Log("호출" + _item.itemName);
         if (items.Count > 0)
         {
             foreach (Item item in items)
@@ -41,20 +40,19 @@ public class Invetory : MonoBehaviour
                 if (item.itemName == _item.itemName)
                 {
                     item.itemCnt += _item.itemCnt;
-                    //onChangeItem.Invoke();
+                    if (onChangeItem != null)
+                        onChangeItem.Invoke();
                     return true;
                 }
             }
         }
-        Debug.Log("동일아이템없음");
         if (items.Count < slotCnt)
         {
             items.Add(new Item(_item));
-            //onChangeItem.Invoke();
-            Debug.Log("추가 성공");
+            if (onChangeItem != null)
+                onChangeItem.Invoke();
             return true;
         }
-        Debug.Log("추가 실패" + _item.itemName);
         return false;
     }
 }

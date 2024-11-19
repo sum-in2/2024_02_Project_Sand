@@ -17,6 +17,8 @@ public class inventoryUI : MonoBehaviour
         slots = slotHolder.GetComponentsInChildren<Slot>();
         inventoryPanel.SetActive(activelnventory);
         inven.SlotCount = slots.Length;
+        inven.onChangeItem += RedrawInvetoryUI;
+        RedrawInvetoryUI();
     }
 
     private void Update()
@@ -25,6 +27,19 @@ public class inventoryUI : MonoBehaviour
         {
             activelnventory = !activelnventory;
             inventoryPanel.SetActive(activelnventory);
+        }
+    }
+
+    private void RedrawInvetoryUI()
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i].RemoveSlots();
+        }
+        for (int i = 0; i < inven.items.Count; i++)
+        {
+            slots[i].item = inven.items[i];
+            slots[i].UpdateSlotUI();
         }
     }
 }
