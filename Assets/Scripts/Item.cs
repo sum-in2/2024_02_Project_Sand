@@ -15,6 +15,15 @@ public class Item
     public ItemType itemType;
     public string itemName;
     public Sprite itemImage;
+    public int itemCnt;
+
+    public Item(Item other)
+    {
+        this.itemImage = other.itemImage;
+        this.itemName = other.itemName;
+        this.itemType = other.itemType;
+        this.itemCnt = other.itemCnt;
+    }
 
     public bool Use()
     {

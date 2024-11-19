@@ -50,6 +50,7 @@ MonoBehaviour:
     itemType: 0
     itemName: 
     itemImage: {fileID: 0}
+    itemCnt: 0
   image: {fileID: 8437446967843318161}
 --- !u!212 &8437446967843318161
 SpriteRenderer:

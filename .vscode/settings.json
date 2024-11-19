@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "2024pr.sln"
+    "dotnet.defaultSolution": "2024_02_Project_Sand.sln"
 }

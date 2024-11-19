@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class inventoryUI : MonoBehaviour
 {
+    Invetory inven;
     public GameObject inventoryPanel;
     bool activelnventory = false;
 
@@ -12,8 +13,10 @@ public class inventoryUI : MonoBehaviour
 
     private void Start()
     {
+        inven = Invetory.instance;
         slots = slotHolder.GetComponentsInChildren<Slot>();
         inventoryPanel.SetActive(activelnventory);
+        inven.SlotCount = slots.Length;
     }
 
     private void Update()
