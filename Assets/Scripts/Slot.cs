@@ -24,4 +24,12 @@ public class Slot : MonoBehaviour
         itemIcon.gameObject.SetActive(false);
         itemCountText.gameObject.SetActive(false);
     }
+
+    public void OnSlotClick()
+    {
+        if (item != null)
+        {
+            UIManager.Instance.ShowItemInfo(item);
+        }
+    }
 }
