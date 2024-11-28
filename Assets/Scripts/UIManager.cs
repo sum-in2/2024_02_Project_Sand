@@ -7,6 +7,8 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; }
     public ItemInfoPanel itemInfoPanel;
     public InventoryUI inventoryUI;
+    public ExchangeUI exchangeUI;
+    public ExchangePanel exchangePanel;
 
     private Stack<GameObject> uiStack = new Stack<GameObject>();
 
@@ -23,6 +25,7 @@ public class UIManager : MonoBehaviour
 
         inventoryUI.gameObject.SetActive(false);
         itemInfoPanel.gameObject.SetActive(false);
+        exchangeUI.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -33,6 +36,13 @@ public class UIManager : MonoBehaviour
                 CloseUI();
             else
                 OpenUI(inventoryUI.gameObject);
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (uiStack.Count != 0 && uiStack.Peek() == exchangeUI.gameObject)
+                CloseUI();
+            else
+                OpenUI(exchangeUI.gameObject);
         }
         if (Input.GetKeyDown(KeyCode.Escape) && uiStack.Count != 0)
             CloseUI();
@@ -47,11 +57,31 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void ShowExchange(Item item)
+    {
+        if (item != null && exchangePanel != null)
+        {
+            OpenUI(exchangePanel.gameObject);
+            exchangePanel.ShowInfo(item);
+        }
+    }
+
     public void OpenUI(GameObject uiPanel)
     {
         if (!uiStack.Contains(uiPanel))
         {
             uiPanel.SetActive(true);
+
+            Canvas parentCanvas = uiPanel.transform.parent.GetComponent<Canvas>();
+            if (parentCanvas != null)
+            {
+                parentCanvas.sortingOrder = uiStack.Count;
+            }
+            else
+            {
+                Debug.LogWarning("부모 오브젝트에 Canvas 컴포넌트가 없습니다: " + uiPanel.name);
+            }
+
             uiStack.Push(uiPanel);
         }
     }

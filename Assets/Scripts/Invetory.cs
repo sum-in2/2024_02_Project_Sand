@@ -30,6 +30,7 @@ public class Invetory : MonoBehaviour
     }
 
     public List<Item> items = new List<Item>();
+    public List<Item> exchangeItems = new List<Item>();
 
     public bool AddItem(Item _item)
     {
@@ -53,6 +54,12 @@ public class Invetory : MonoBehaviour
                 onChangeItem.Invoke();
             return true;
         }
+        return false;
+    }
+
+    public bool ExchangeItems(Item _item)
+    {
+
         return false;
     }
 }

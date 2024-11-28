@@ -32,4 +32,12 @@ public class Slot : MonoBehaviour
             UIManager.Instance.ShowItemInfo(item);
         }
     }
+    public void OnExchangeClick()
+    {
+        if (item != null)
+        {
+            Debug.Log("excha");
+            UIManager.Instance.ShowExchange(item);
+        }
+    }
 }
