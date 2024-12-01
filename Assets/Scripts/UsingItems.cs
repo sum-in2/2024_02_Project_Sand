@@ -12,6 +12,7 @@ public class UsingItems : MonoBehaviour
         item.itemName = _item.itemName;
         item.itemImage = _item.itemImage;
         item.itemType = _item.itemType;
+        item.itemValue = _item.itemValue;
 
         image.sprite = _item.itemImage;
     }

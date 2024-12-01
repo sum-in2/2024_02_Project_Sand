@@ -16,6 +16,7 @@ public class Item
     public string itemName;
     public Sprite itemImage;
     public int itemCnt;
+    public int itemValue;
 
     public Item(Item other)
     {
@@ -23,10 +24,6 @@ public class Item
         this.itemName = other.itemName;
         this.itemType = other.itemType;
         this.itemCnt = other.itemCnt;
-    }
-
-    public bool Use()
-    {
-        return false;
+        this.itemValue = other.itemValue;
     }
 }
