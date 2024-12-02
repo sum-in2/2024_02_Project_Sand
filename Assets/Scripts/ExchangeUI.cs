@@ -6,28 +6,38 @@ public class ExchangeUI : MonoBehaviour
 {
     Invetory inven;
 
-    public Slot[] slots;
-    public Transform slotHolder;
+    public Slot[] exchangePlayerSlots;
+    public Slot[] exchangeShopSlots;
+    public Transform exchangePlayerSlotHolder;
+    public Transform exchangeShopSlotHolder;
 
     private void Start()
     {
         inven = Invetory.instance;
-        slots = slotHolder.GetComponentsInChildren<Slot>();
-        inven.SlotCount = slots.Length;
-        inven.onChangeItem += RedrawInvetoryUI;
+
+        exchangePlayerSlots = exchangePlayerSlotHolder.GetComponentsInChildren<Slot>();
+        exchangeShopSlots = exchangeShopSlotHolder.GetComponentsInChildren<Slot>();
+
+        inven.SlotCount = exchangePlayerSlots.Length;
         RedrawInvetoryUI();
     }
 
+    // TODO: Redraw 호출
     private void RedrawInvetoryUI()
     {
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < exchangePlayerSlots.Length; i++)
         {
-            slots[i].RemoveSlots();
+            exchangePlayerSlots[i].RemoveSlots();
+        }
+        for (int i = 0; i < exchangeShopSlots.Length; i++)
+        {
+            exchangeShopSlots[i].RemoveSlots();
         }
         for (int i = 0; i < inven.items.Count; i++)
         {
-            slots[i].item = inven.items[i];
-            slots[i].UpdateSlotUI();
+            // TODO: 물자 DB, 상인 DB 연동시키기
+            exchangePlayerSlots[i].item = inven.items[i];
+            exchangePlayerSlots[i].UpdateSlotUI();
         }
     }
 }

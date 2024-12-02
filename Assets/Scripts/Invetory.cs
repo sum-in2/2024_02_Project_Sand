@@ -59,6 +59,15 @@ public class Invetory : MonoBehaviour
 
     public bool ExchangeItems(Item _item)
     {
+        foreach (Item item in items)
+        {
+            if (item.itemName == _item.itemName)
+            {
+                //TODO : 교환 실패 후 창 닫으면 다시 돌려줘야함
+                item.itemCnt -= _item.itemCnt;
+            }
+        }
+        exchangeItems.Add(new Item(_item));
 
         return false;
     }
