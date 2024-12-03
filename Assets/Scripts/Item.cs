@@ -15,8 +15,8 @@ public class Item
     public ItemType itemType;
     public string itemName;
     public Sprite itemImage;
-    public int itemCnt;
     public int itemValue;
+    public int itemCnt;
 
     public Item(Item other)
     {

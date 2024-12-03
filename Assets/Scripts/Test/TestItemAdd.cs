@@ -13,6 +13,6 @@ public class TestItemAdd : MonoBehaviour
         {
             itemList = ItemDB.instance.itemList;
         }
-        Invetory.instance.AddItem(itemList[Random.Range(0, 3)]);
+        Inventory.instance.AddItem(itemList[Random.Range(0, 3)]);
     }
 }

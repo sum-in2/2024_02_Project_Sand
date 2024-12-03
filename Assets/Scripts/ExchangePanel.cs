@@ -17,7 +17,7 @@ public class ExchangePanel : MonoBehaviour
 
     public void ShowInfo(Item _item)
     {
-        exchangeItem = _item;
+        exchangeItem = new Item(_item);
         itemIcon.sprite = exchangeItem.itemImage;
         itemTextName.text = exchangeItem.itemName;
         maxItemCount = exchangeItem.itemCnt;
@@ -34,11 +34,9 @@ public class ExchangePanel : MonoBehaviour
         currentCount = Mathf.RoundToInt(value);
         itemTextCnt.text = currentCount.ToString() + " / " + maxItemCount.ToString();
     }
-
-    //TODO : 버튼에 거래할 품목 연동////은 스크립트 따로 만들어야 할듷?
     public void ExchangeOK()
     {
         exchangeItem.itemCnt = currentCount;
-        Invetory.instance.ExchangeItems(exchangeItem);
+        Inventory.instance.ExchangeItems(exchangeItem);
     }
 }

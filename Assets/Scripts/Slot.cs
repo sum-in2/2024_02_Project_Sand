@@ -36,7 +36,6 @@ public class Slot : MonoBehaviour
     {
         if (item != null)
         {
-            Debug.Log("excha");
             UIManager.Instance.ShowExchange(item);
         }
     }

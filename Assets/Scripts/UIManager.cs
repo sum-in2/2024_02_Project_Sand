@@ -26,23 +26,36 @@ public class UIManager : MonoBehaviour
         inventoryUI.gameObject.SetActive(false);
         itemInfoPanel.gameObject.SetActive(false);
         exchangeUI.gameObject.SetActive(false);
+        exchangePanel.gameObject.SetActive(false);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
+            #region Inventory
             if (uiStack.Count != 0 && uiStack.Peek() == inventoryUI.gameObject)
                 CloseUI();
             else
+            {
+                if (Inventory.instance.onChangeItem != null)
+                    Inventory.instance.onChangeItem.Invoke();
                 OpenUI(inventoryUI.gameObject);
+            }
+            #endregion
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
+            #region Exchange
             if (uiStack.Count != 0 && uiStack.Peek() == exchangeUI.gameObject)
                 CloseUI();
             else
+            {
+                if (Inventory.instance.onChangeExc != null)
+                    Inventory.instance.onChangeExc.Invoke();
                 OpenUI(exchangeUI.gameObject);
+            }
+            #endregion
         }
         if (Input.GetKeyDown(KeyCode.Escape) && uiStack.Count != 0)
             CloseUI();
@@ -91,6 +104,9 @@ public class UIManager : MonoBehaviour
         if (uiStack.Count > 0)
         {
             GameObject currentUI = uiStack.Pop();
+            if (currentUI.gameObject == exchangeUI.gameObject)
+                exchangeUI.GetComponent<ExchangeUI>().ExchangeCancel();
+
             currentUI.SetActive(false);
         }
     }
