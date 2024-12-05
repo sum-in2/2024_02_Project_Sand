@@ -47,7 +47,6 @@ public class Inventory : MonoBehaviour
 
     public bool ExchangeItems(Item _item)
     {
-        // TODO : 교환 실패 후 창 닫으면 다시 돌려줘야함
         if (AddItem(_item, exchangeItems))
         {
             bool bCheck = false;
@@ -90,5 +89,21 @@ public class Inventory : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void ExchangeCancel()
+    {
+        foreach (Item item in exchangeItems)
+        {
+            foreach (Item _item in items)
+            {
+                if (item.itemName == _item.itemName)
+                {
+                    _item.itemCnt += item.itemCnt;
+                    break;
+                }
+            }
+        }
+        exchangeItems.Clear();
     }
 }

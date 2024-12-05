@@ -51,5 +51,7 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "2024_02_Project_Sand.sln"
+    "dotnet.defaultSolution": "2024_02_Project_Sand.sln",
+    "todo-tree.regex.regex": "//\\s*TODO\\s*:",
+    "todo-tree.general.tags": ["TODO"]
 }

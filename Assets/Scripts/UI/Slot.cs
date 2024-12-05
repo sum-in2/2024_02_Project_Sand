@@ -25,6 +25,7 @@ public class Slot : MonoBehaviour
         itemCountText.gameObject.SetActive(false);
     }
 
+    //TODO : 태그 검사해서 함수 하나로 줄일수있긴한데
     public void OnSlotClick()
     {
         if (item != null)
