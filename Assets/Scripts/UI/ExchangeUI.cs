@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -26,8 +27,6 @@ public class ExchangeUI : MonoBehaviour
         traderInventory = TraderInventory.instance;
         inven = Inventory.instance;
 
-        traderInventory.InitList("test1", 2);
-
         exchangePlayerSlots = exchangePlayerSlotHolder.GetComponentsInChildren<Slot>();
         cellPlayerSlots = cellPlayerSlotHolder.GetComponentsInChildren<Slot>();
 
@@ -37,6 +36,10 @@ public class ExchangeUI : MonoBehaviour
         inven.SlotCount = exchangePlayerSlots.Length;
         inven.onChangeExc += RedrawExchangeUI;
         RedrawExchangeUI();
+    }
+    private void OnEnable()
+    {
+        traderInventory.InitList((Country)3, 2);
     }
 
     private void RedrawExchangeUI()
@@ -61,20 +64,16 @@ public class ExchangeUI : MonoBehaviour
             cellPlayerSlots[i].item = inven.exchangeItems[i];
             cellPlayerSlots[i].UpdateSlotUI();
         }
-        // 머고이거
-        Debug.Log("1");
         for (int i = 0; i < traderInventory.traderItem.Count; i++)
         {
             exchangeShopSlots[i].item = traderInventory.traderItem[i];
             exchangeShopSlots[i].UpdateSlotUI();
         }
-        Debug.Log("1");
         for (int i = 0; i < traderInventory.traderExchange.Count; i++)
         {
             cellShopSlots[i].item = traderInventory.traderExchange[i];
             cellShopSlots[i].UpdateSlotUI();
         }
-        Debug.Log("1");
 
         cellPricePlayer.text = CalculateValue(inven.exchangeItems).ToString();
         cellPriceTrader.text = CalculateValue(traderInventory.traderExchange).ToString();

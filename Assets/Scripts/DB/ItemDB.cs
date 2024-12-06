@@ -21,6 +21,11 @@ public class ItemDB : MonoBehaviour
 
     public List<Item> itemList = new List<Item>();
 
+    private void Start()
+    {
+        itemList = DataManager.instance.LoadItemCSV("ItemDB");
+    }
+
     public Item GetItemByName(string itemName)
     {
         return itemList.FirstOrDefault(item => item.itemName == itemName);

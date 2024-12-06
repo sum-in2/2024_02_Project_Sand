@@ -22,28 +22,16 @@ public class ShopDB : MonoBehaviour
     #endregion
 
     // TODO : DB 입출력 함수
-    public Dictionary<string, List<ShopItem>> shopDic = new Dictionary<string, List<ShopItem>>
+    public Dictionary<Country, List<ShopItem>> shopDic = new Dictionary<Country, List<ShopItem>>();
+
+    private void Start()
     {
-        {
-            "test1", new List<ShopItem>
-            {
-                new ShopItem { itemName = "test1", itemValue = 15, itemCnt = 1 },
-                new ShopItem { itemName = "test2", itemValue = 20, itemCnt = 6 },
-                new ShopItem { itemName = "test3", itemValue = 30, itemCnt = 3 }
-            }
-        },
-        {
-            "test2", new List<ShopItem>
-            {
-                new ShopItem { itemName = "test2", itemValue = 40, itemCnt = 4 },
-                new ShopItem { itemName = "test3", itemValue = 10, itemCnt = 2 },
-                new ShopItem { itemName = "test5", itemValue = 50, itemCnt = 2 }
-            }
-        }
-    };
+        shopDic = DataManager.instance.LoadCountryCSV("CountryDB");
+    }
 
     public List<ShopItem> GetShopItemsInCountry(string countryName)
     {
-        return new List<ShopItem>(shopDic[countryName]);
+        Country country = Enum.Parse<Country>(countryName);
+        return new List<ShopItem>(shopDic[country]);
     }
 }

@@ -26,10 +26,9 @@ public class TraderInventory : MonoBehaviour
     string traderName;
     int level;
 
-    public void InitList(string _countryName, int _level)
+    public void InitList(Country _country, int _level)
     {
-        Debug.Log("1");
-        countryName = _countryName;
+        countryName = _country.ToString();
         level = _level;
         traderItem = ShopItemListToItemList(ShopDB.instance.GetShopItemsInCountry(countryName));
         traderExchange = ReturnTraderList();

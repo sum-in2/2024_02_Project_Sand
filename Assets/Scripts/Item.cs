@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType
-{
-    a,
-    b,
-    etc
-}
 
 [System.Serializable]
 public class Item
 {
-    public ItemType itemType;
     public string itemName;
     public Sprite itemImage;
     public int itemValue;
@@ -22,8 +15,15 @@ public class Item
     {
         this.itemImage = other.itemImage;
         this.itemName = other.itemName;
-        this.itemType = other.itemType;
         this.itemCnt = other.itemCnt;
         this.itemValue = other.itemValue;
+    }
+
+    public Item(Sprite _itemImage, string _itemName, int _itemValue, int _itemCnt)
+    {
+        this.itemImage = _itemImage;
+        this.itemName = _itemName;
+        this.itemValue = _itemValue;
+        this.itemCnt = _itemCnt;
     }
 }
