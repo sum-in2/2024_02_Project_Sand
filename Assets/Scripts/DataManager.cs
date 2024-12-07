@@ -46,26 +46,29 @@ public class DataManager : MonoBehaviour
         return csvData.text.Split(new char[] { '\n' });
     }
 
-    public Dictionary<Country, List<ShopItem>> LoadCountryCSV(string _CSVFileName)
+    public Dictionary<(Country, Difficulty), List<Item>> LoadCountryCSV(string _CSVFileName)
     {
-        Dictionary<Country, List<ShopItem>> res = new Dictionary<Country, List<ShopItem>>();
+        Dictionary<(Country, Difficulty), List<Item>> res = new Dictionary<(Country, Difficulty), List<Item>>();
 
         string[] data = OpenCSVData(_CSVFileName);
         if (data == null) return null;
 
-        for (int i = 0; i < Enum.GetValues(typeof(Country)).Length; i++)
-        {
-            res[(Country)i] = new List<ShopItem>();
-        }
-
         for (int i = 1; i < data.Length; i++)
         {
             string[] element = data[i].Split(new char[] { ',' });
-            if (Enum.TryParse<Country>(element[0], out Country index))
+            if (Enum.TryParse<Country>(element[0], out Country country) &&
+                Enum.TryParse<Difficulty>(element[2], out Difficulty difficulty))
             {
-                res[index].Add(new ShopItem(
+                var key = (country, difficulty);
+                if (!res.ContainsKey(key))
+                {
+                    res[key] = new List<Item>();
+                }
+
+                Sprite sprite = Resources.Load<Sprite>($"ItemImage/{element[1]}");
+                res[key].Add(new Item(
+                    sprite,
                     element[1],
-                    Enum.Parse<Difficulty>(element[2]),
                     int.Parse(element[3]),
                     int.Parse(element[4])
                 ));

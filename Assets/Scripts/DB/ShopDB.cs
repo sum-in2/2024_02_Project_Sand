@@ -21,17 +21,19 @@ public class ShopDB : MonoBehaviour
     }
     #endregion
 
-    // TODO : DB 입출력 함수
-    public Dictionary<Country, List<ShopItem>> shopDic = new Dictionary<Country, List<ShopItem>>();
+    public Dictionary<(Country, Difficulty), List<Item>> shopDic = new Dictionary<(Country, Difficulty), List<Item>>();
 
     private void Start()
     {
         shopDic = DataManager.instance.LoadCountryCSV("CountryDB");
     }
 
-    public List<ShopItem> GetShopItemsInCountry(string countryName)
+    public List<Item> GetItemsInCountryDifficulty(string countryName, string difficulty)
     {
-        Country country = Enum.Parse<Country>(countryName);
-        return new List<ShopItem>(shopDic[country]);
+        if (Enum.TryParse(countryName, out Country _country) &&
+            Enum.TryParse(difficulty, out Difficulty _difficulty))
+            return new List<Item>(shopDic[(_country, _difficulty)]);
+        else
+            return null;
     }
 }

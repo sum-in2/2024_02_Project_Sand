@@ -25,6 +25,7 @@ public class ExchangeUI : MonoBehaviour
     private void Start()
     {
         traderInventory = TraderInventory.instance;
+        Debug.Log(traderInventory);
         inven = Inventory.instance;
 
         exchangePlayerSlots = exchangePlayerSlotHolder.GetComponentsInChildren<Slot>();
@@ -34,46 +35,33 @@ public class ExchangeUI : MonoBehaviour
         cellShopSlots = cellShopSlotHolder.GetComponentsInChildren<Slot>();
 
         inven.SlotCount = exchangePlayerSlots.Length;
+        traderInventory.InitList((Country)3, 2);
         inven.onChangeExc += RedrawExchangeUI;
         RedrawExchangeUI();
     }
-    private void OnEnable()
+
+    void UpdateSlots(Slot[] slots, List<Item> items)
     {
-        traderInventory.InitList((Country)3, 2);
+        int count = Mathf.Min(slots.Length, items.Count);
+
+        for (int i = 0; i < count; i++)
+        {
+            slots[i].RemoveSlots();
+            slots[i].item = items[i];
+            slots[i].UpdateSlotUI();
+        }
+        for (int i = count; i < slots.Length; i++)
+        {
+            slots[i].RemoveSlots();
+        }
     }
 
     private void RedrawExchangeUI()
     {
-        for (int i = 0; i < exchangePlayerSlots.Length; i++)
-        {
-            exchangePlayerSlots[i].RemoveSlots();
-            exchangeShopSlots[i].RemoveSlots();
-        }
-        for (int i = 0; i < cellPlayerSlots.Length; i++)
-        {
-            cellPlayerSlots[i].RemoveSlots();
-            cellShopSlots[i].RemoveSlots();
-        }
-        for (int i = 0; i < inven.items.Count; i++)
-        {
-            exchangePlayerSlots[i].item = inven.items[i];
-            exchangePlayerSlots[i].UpdateSlotUI();
-        }
-        for (int i = 0; i < inven.exchangeItems.Count; i++)
-        {
-            cellPlayerSlots[i].item = inven.exchangeItems[i];
-            cellPlayerSlots[i].UpdateSlotUI();
-        }
-        for (int i = 0; i < traderInventory.traderItem.Count; i++)
-        {
-            exchangeShopSlots[i].item = traderInventory.traderItem[i];
-            exchangeShopSlots[i].UpdateSlotUI();
-        }
-        for (int i = 0; i < traderInventory.traderExchange.Count; i++)
-        {
-            cellShopSlots[i].item = traderInventory.traderExchange[i];
-            cellShopSlots[i].UpdateSlotUI();
-        }
+        UpdateSlots(exchangePlayerSlots, inven.items);
+        UpdateSlots(cellPlayerSlots, inven.exchangeItems);
+        UpdateSlots(exchangeShopSlots, traderInventory.traderItem);
+        UpdateSlots(cellShopSlots, traderInventory.traderExchange);
 
         cellPricePlayer.text = CalculateValue(inven.exchangeItems).ToString();
         cellPriceTrader.text = CalculateValue(traderInventory.traderExchange).ToString();
