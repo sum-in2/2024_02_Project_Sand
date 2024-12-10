@@ -25,7 +25,6 @@ public class ExchangeUI : MonoBehaviour
     private void Start()
     {
         traderInventory = TraderInventory.instance;
-        Debug.Log(traderInventory);
         inven = Inventory.instance;
 
         exchangePlayerSlots = exchangePlayerSlotHolder.GetComponentsInChildren<Slot>();
@@ -35,6 +34,7 @@ public class ExchangeUI : MonoBehaviour
         cellShopSlots = cellShopSlotHolder.GetComponentsInChildren<Slot>();
 
         inven.SlotCount = exchangePlayerSlots.Length;
+        //TODO : 여기임
         traderInventory.InitList((Country)3, 2);
         inven.onChangeExc += RedrawExchangeUI;
         RedrawExchangeUI();
