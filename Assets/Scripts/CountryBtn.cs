@@ -1,20 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-//TODO : 버튼 누르면 오브젝트 이름을 인자로 하는 함수로 상점 초기화
-// e 누르면 나오던 화면 <
+//TODO : 버튼 누르면 상점 초기화
+// 부모의 traderinventory 컴포넌트를 exchangeui에 입력해야함.
+// uimanager instance traderinventory = 부모 traderinventory
+// uimanager instance excuiswitch
 public class CountryBtn : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
 
+    TraderInventory traderInventory;
+    private Vector3 dragOrigin;
+
+    private void Update()
+    {
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnMouseDown()
     {
-
+        if (UIManager.Instance.getUiStackPeek() == null)
+        {
+            if (traderInventory == null)
+            {
+                traderInventory = gameObject.GetComponentInParent<TraderInventory>();
+            }
+            UIManager.Instance.exchangeUI.TraderInventory = traderInventory;
+            UIManager.Instance.ToggleExchangeUI();
+        }
     }
 }

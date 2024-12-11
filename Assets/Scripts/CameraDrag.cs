@@ -47,44 +47,48 @@ public class CameraDrag : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (UIManager.Instance.getUiStackPeek() == null
+        || UIManager.Instance.getUiStackPeek().GetComponent<InventoryUI>())
         {
-            isDragging = true;
-            dragOrigin = Input.mousePosition;
-        }
+            if (Input.GetMouseButtonDown(0))
+            {
+                isDragging = true;
+                dragOrigin = Input.mousePosition;
+            }
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            isDragging = false;
-        }
+            if (Input.GetMouseButtonUp(0))
+            {
+                isDragging = false;
+            }
 
-        if (isDragging)
-        {
-            Vector3 pos = mainCamera.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
-            Vector3 move = new Vector3(pos.x * dragSpeed, pos.y * dragSpeed, 0);
+            if (isDragging)
+            {
+                Vector3 pos = mainCamera.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
+                Vector3 move = new Vector3(pos.x * dragSpeed, pos.y * dragSpeed, 0);
 
-            Vector3 newPosition = transform.position - move;
-            transform.position = ClampCamera(newPosition);
+                Vector3 newPosition = transform.position - move;
+                transform.position = ClampCamera(newPosition);
 
-            dragOrigin = Input.mousePosition;
-        }
+                dragOrigin = Input.mousePosition;
+            }
 
-        float scrollInput = Input.GetAxis("Mouse ScrollWheel");
-        if (scrollInput != 0)
-        {
-            float newSize = mainCamera.orthographicSize - scrollInput * zoomSpeed;
-            newSize = Mathf.Clamp(newSize, minZoom, maxZoom);
+            float scrollInput = Input.GetAxis("Mouse ScrollWheel");
+            if (scrollInput != 0)
+            {
+                float newSize = mainCamera.orthographicSize - scrollInput * zoomSpeed;
+                newSize = Mathf.Clamp(newSize, minZoom, maxZoom);
 
-            Vector3 beforeZoomPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                Vector3 beforeZoomPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
-            mainCamera.orthographicSize = newSize;
+                mainCamera.orthographicSize = newSize;
 
-            CalculateBounds();
+                CalculateBounds();
 
-            Vector3 afterZoomPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 offset = beforeZoomPos - afterZoomPos;
+                Vector3 afterZoomPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                Vector3 offset = beforeZoomPos - afterZoomPos;
 
-            transform.position = ClampCamera(transform.position + offset);
+                transform.position = ClampCamera(transform.position + offset);
+            }
         }
     }
 

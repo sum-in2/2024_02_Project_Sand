@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour
 
     private Stack<GameObject> uiStack = new Stack<GameObject>();
 
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -44,21 +46,27 @@ public class UIManager : MonoBehaviour
             }
             #endregion
         }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            #region Exchange
-            if (uiStack.Count != 0 && uiStack.Peek() == exchangeUI.gameObject)
-                CloseUI();
-            else
-            {
-                if (Inventory.instance.onChangeExc != null)
-                    Inventory.instance.onChangeExc.Invoke();
-                OpenUI(exchangeUI.gameObject);
-            }
-            #endregion
-        }
+
         if (Input.GetKeyDown(KeyCode.Escape) && uiStack.Count != 0)
             CloseUI();
+    }
+
+    public void ToggleExchangeUI()
+    {
+        if (uiStack.Count != 0 && uiStack.Peek() == exchangeUI.gameObject)
+            CloseUI();
+        else
+        {
+            if (Inventory.instance.onChangeExc != null)
+                Inventory.instance.onChangeExc.Invoke();
+            OpenUI(exchangeUI.gameObject);
+        }
+    }
+
+    public GameObject getUiStackPeek()
+    {
+        if (uiStack.Count != 0) return uiStack.Peek();
+        else return null;
     }
 
     public void ShowItemInfo(Item item)
@@ -88,11 +96,7 @@ public class UIManager : MonoBehaviour
             Canvas parentCanvas = uiPanel.transform.parent.GetComponent<Canvas>();
             if (parentCanvas != null)
             {
-                parentCanvas.sortingOrder = uiStack.Count;
-            }
-            else
-            {
-                Debug.LogWarning("부모 오브젝트에 Canvas 컴포넌트가 없습니다: " + uiPanel.name);
+                parentCanvas.sortingOrder = uiStack.Count + 1;
             }
 
             uiStack.Push(uiPanel);

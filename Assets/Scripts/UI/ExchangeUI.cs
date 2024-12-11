@@ -9,6 +9,11 @@ public class ExchangeUI : MonoBehaviour
 {
     Inventory inven;
     TraderInventory traderInventory;
+    public TraderInventory TraderInventory
+    {
+        get { return traderInventory; }
+        set { traderInventory = value; }
+    }
 
     public Slot[] exchangePlayerSlots;
     public Slot[] exchangeShopSlots;
@@ -24,7 +29,6 @@ public class ExchangeUI : MonoBehaviour
 
     private void Start()
     {
-        traderInventory = TraderInventory.instance;
         inven = Inventory.instance;
 
         exchangePlayerSlots = exchangePlayerSlotHolder.GetComponentsInChildren<Slot>();
@@ -34,8 +38,6 @@ public class ExchangeUI : MonoBehaviour
         cellShopSlots = cellShopSlotHolder.GetComponentsInChildren<Slot>();
 
         inven.SlotCount = exchangePlayerSlots.Length;
-        //TODO : 여기임
-        traderInventory.InitList((Country)3, 2);
         inven.onChangeExc += RedrawExchangeUI;
         RedrawExchangeUI();
     }
