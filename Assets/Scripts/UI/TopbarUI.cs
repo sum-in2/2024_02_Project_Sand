@@ -31,8 +31,6 @@ public class TopbarUI : MonoBehaviour
             combatText,
             camelText
         };
-        Debug.Log(infos.Length);
-        Debug.Log(texts.Length);
 
         for (int i = 0; i < infos.Length; i++)
             texts[i].text = infos[i].ToString();

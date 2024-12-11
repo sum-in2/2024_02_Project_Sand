@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public InventoryUI inventoryUI;
     public ExchangeUI exchangeUI;
     public ExchangePanel exchangePanel;
+    public TopbarUI topbarUI;
 
     private Stack<GameObject> uiStack = new Stack<GameObject>();
 
@@ -26,6 +27,7 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        topbarUI.gameObject.SetActive(true);
         inventoryUI.gameObject.SetActive(false);
         itemInfoPanel.gameObject.SetActive(false);
         exchangeUI.gameObject.SetActive(false);
@@ -102,6 +104,8 @@ public class UIManager : MonoBehaviour
 
             uiStack.Push(uiPanel);
         }
+        if (uiStack.Count != 0)
+            topbarUI.gameObject.SetActive(false);
     }
 
     public void CloseUI()
@@ -114,5 +118,7 @@ public class UIManager : MonoBehaviour
 
             currentUI.SetActive(false);
         }
+        if (uiStack.Count == 0)
+            topbarUI.gameObject.SetActive(true);
     }
 }

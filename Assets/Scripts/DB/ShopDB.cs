@@ -18,6 +18,7 @@ public class ShopDB : MonoBehaviour
             return;
         }
         instance = this;
+        shopDic = DataManager.instance.LoadCountryCSV("CountryDB");
     }
     #endregion
 
@@ -25,7 +26,6 @@ public class ShopDB : MonoBehaviour
 
     private void Start()
     {
-        shopDic = DataManager.instance.LoadCountryCSV("CountryDB");
     }
 
     public List<Item> GetItemsInCountryDifficulty(string countryName, string difficulty)

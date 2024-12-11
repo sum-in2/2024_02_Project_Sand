@@ -17,6 +17,7 @@ public class ItemDB : MonoBehaviour
             return;
         }
         instance = this;
+        itemList = DataManager.instance.LoadItemCSV("ItemDB");
     }
     #endregion
 
@@ -24,7 +25,6 @@ public class ItemDB : MonoBehaviour
 
     private void Start()
     {
-        itemList = DataManager.instance.LoadItemCSV("ItemDB");
     }
 
     public Item GetItemByName(string itemName)

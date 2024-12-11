@@ -12,6 +12,9 @@ public class TraderInventory : MonoBehaviour
     string traderName;
     Difficulty difficulty;
 
+    [SerializeField]
+    List<Item> highPriceItems = new List<Item>();
+
     //TODO : OnClick(판매자 이름, 난이도, 도시정보?는 일단 보류)
     private void Start()
     {
@@ -24,5 +27,11 @@ public class TraderInventory : MonoBehaviour
         difficulty = (Difficulty)_difficulty;
 
         traderItem = ShopDB.instance.GetItemsInCountryDifficulty(countryName, difficulty.ToString());
+        highPriceItems = traderItem.OrderByDescending(x => x.itemValue).Take(5).ToList();
+    }
+
+    public List<Item> GetHighPriceItems()
+    {
+        return highPriceItems;
     }
 }
