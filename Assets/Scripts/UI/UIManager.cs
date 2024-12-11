@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public ExchangeUI exchangeUI;
     public ExchangePanel exchangePanel;
     public TopbarUI topbarUI;
+    public CountryInfo countryInfo;
 
     private Stack<GameObject> uiStack = new Stack<GameObject>();
 
@@ -27,6 +28,7 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        countryInfo.gameObject.SetActive(false);
         topbarUI.gameObject.SetActive(true);
         inventoryUI.gameObject.SetActive(false);
         itemInfoPanel.gameObject.SetActive(false);
@@ -48,6 +50,16 @@ public class UIManager : MonoBehaviour
                 OpenUI(inventoryUI.gameObject);
             }
             #endregion
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (uiStack.Count != 0 && uiStack.Peek() == countryInfo.gameObject)
+                CloseUI();
+            else
+            {
+                OpenUI(countryInfo.gameObject);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) && uiStack.Count != 0)
