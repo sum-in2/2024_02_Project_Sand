@@ -9,6 +9,7 @@ public class TraderInventory : MonoBehaviour
     public List<Item> traderItem = new List<Item>();
     public List<Item> traderExchange = new List<Item>();
     string countryName;
+    public string CountryName { get { return countryName; } set { } }
     string traderName;
     Difficulty difficulty;
 
@@ -27,7 +28,7 @@ public class TraderInventory : MonoBehaviour
         difficulty = (Difficulty)_difficulty;
 
         traderItem = ShopDB.instance.GetItemsInCountryDifficulty(countryName, difficulty.ToString());
-        highPriceItems = traderItem.OrderByDescending(x => x.itemValue).Take(5).ToList();
+        highPriceItems = traderItem.OrderByDescending(x => x.itemValue).Take(7).ToList();
     }
 
     public List<Item> GetHighPriceItems()

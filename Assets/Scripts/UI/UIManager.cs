@@ -52,18 +52,14 @@ public class UIManager : MonoBehaviour
             #endregion
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (uiStack.Count != 0 && uiStack.Peek() == countryInfo.gameObject)
-                CloseUI();
-            else
-            {
-                OpenUI(countryInfo.gameObject);
-            }
-        }
-
         if (Input.GetKeyDown(KeyCode.Escape) && uiStack.Count != 0)
             CloseUI();
+    }
+
+    public void OpenCountryInfo(TraderInventory traderInventory)
+    {
+        countryInfo.traderInventory = traderInventory;
+        OpenUI(countryInfo.gameObject);
     }
 
     public void ToggleExchangeUI()
@@ -116,7 +112,7 @@ public class UIManager : MonoBehaviour
 
             uiStack.Push(uiPanel);
         }
-        if (uiStack.Count != 0)
+        if (uiStack.Count != 0 && uiStack.Peek() != countryInfo.gameObject)
             topbarUI.gameObject.SetActive(false);
     }
 

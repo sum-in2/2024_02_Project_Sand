@@ -9,24 +9,17 @@ using UnityEngine.EventSystems;
 // uimanager instance excuiswitch
 public class CountryBtn : MonoBehaviour
 {
-
+    HighPriceList highPriceList;
     TraderInventory traderInventory;
-    private Vector3 dragOrigin;
-
-    private void Update()
-    {
-    }
 
     private void OnMouseDown()
     {
         if (UIManager.Instance.getUiStackPeek() == null)
         {
-            if (traderInventory == null)
-            {
-                traderInventory = gameObject.GetComponentInParent<TraderInventory>();
-            }
+            traderInventory = gameObject.GetComponentInParent<TraderInventory>();
+
             UIManager.Instance.exchangeUI.TraderInventory = traderInventory;
-            UIManager.Instance.ToggleExchangeUI();
+            UIManager.Instance.OpenCountryInfo(traderInventory);
         }
     }
 }
