@@ -12,7 +12,8 @@ public class UIManager : MonoBehaviour
 
     private Stack<GameObject> uiStack = new Stack<GameObject>();
 
-
+    public delegate void OnChangePlayerInfo();
+    public OnChangePlayerInfo onChangePlayerInfo;
 
     private void Awake()
     {
