@@ -5,9 +5,9 @@ using UnityEngine;
 public class CameraDrag : MonoBehaviour
 {
     public float dragSpeed = 2f;
-    public float zoomSpeed = 2f; // 줌 속도
-    public float minZoom = 5f; // 최소 줌
-    public float maxZoom = 20f; // 최대 줌
+    public float zoomSpeed = 2f;
+    public float minZoom = 2f;
+    public float maxZoom = 5f;
     public SpriteRenderer backgroundSprite;
 
     private Camera mainCamera;
