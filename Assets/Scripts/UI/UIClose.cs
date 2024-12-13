@@ -18,6 +18,14 @@ public class UIClose : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            CloseUI();
+        }
+    }
+
     private void CloseUI()
     {
         UIManager.Instance.CloseUI();

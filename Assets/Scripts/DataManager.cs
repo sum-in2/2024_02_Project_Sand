@@ -8,18 +8,18 @@ using UnityEngine.UI;
 
 public enum Country
 {
-    alexandria,
-    antioch,
-    baghdad,
-    damascus,
-    ecbatana,
-    ezurum,
-    gorgan,
-    jerusalem,
-    merv,
-    nishaqur,
-    palmyra,
-    samarkand
+    Alexandria,
+    Antioch,
+    Baghdad,
+    Damascus,
+    Ecbatana,
+    Ezurum,
+    Gorgan,
+    Jerusalem,
+    Merv,
+    Nishaqur,
+    Palmyra,
+    Samarkand
 }
 
 public class DataManager : MonoBehaviour

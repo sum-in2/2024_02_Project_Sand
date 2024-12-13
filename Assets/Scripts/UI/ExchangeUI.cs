@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ExchangeUI : MonoBehaviour
 {
@@ -14,11 +15,10 @@ public class ExchangeUI : MonoBehaviour
         get { return traderInventory; }
         set { traderInventory = value; }
     }
-
-    public Slot[] exchangePlayerSlots;
-    public Slot[] exchangeShopSlots;
-    public Slot[] cellPlayerSlots;
-    public Slot[] cellShopSlots;
+    [HideInInspector] public Slot[] exchangePlayerSlots;
+    [HideInInspector] public Slot[] exchangeShopSlots;
+    [HideInInspector] public Slot[] cellPlayerSlots;
+    [HideInInspector] public Slot[] cellShopSlots;
     public Transform exchangePlayerSlotHolder;
     public Transform exchangeShopSlotHolder;
     public Transform cellPlayerSlotHolder;
@@ -26,6 +26,11 @@ public class ExchangeUI : MonoBehaviour
 
     public TextMeshProUGUI cellPricePlayer;
     public TextMeshProUGUI cellPriceTrader;
+
+    [Header("Scale")]
+
+    [SerializeField] List<Sprite> scaleImages = new List<Sprite>();
+    [SerializeField] GameObject scaleObject;
 
     private void Start()
     {
@@ -67,6 +72,26 @@ public class ExchangeUI : MonoBehaviour
 
         cellPricePlayer.text = CalculateValue(inven.exchangeItems).ToString();
         cellPriceTrader.text = CalculateValue(traderInventory.traderExchange).ToString();
+
+        SettingScale();
+    }
+
+    void SettingScale()
+    {
+        Image imageObject = scaleObject.GetComponent<Image>();
+        if (int.TryParse(cellPriceTrader.text, out int trader) &&
+            int.TryParse(cellPricePlayer.text, out int player))
+        {
+            int maxValue = Mathf.Max(trader, player);
+            int temp = maxValue / 2;
+            int difference = player - trader;
+
+            if (difference > temp) imageObject.sprite = scaleImages[0];
+            else if (difference > 0) imageObject.sprite = scaleImages[1];
+            else if (difference == 0) imageObject.sprite = scaleImages[2];
+            else if (difference < 0) imageObject.sprite = scaleImages[3];
+            else imageObject.sprite = scaleImages[4];
+        }
     }
 
     private int CalculateValue(List<Item> _items)

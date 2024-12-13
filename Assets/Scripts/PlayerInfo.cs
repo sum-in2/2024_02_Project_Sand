@@ -8,7 +8,6 @@ using UnityEngine;
 public class PlayerInfo : MonoBehaviour
 {
     public string nowInCountry;
-    // Start is called before the first frame update
     int level;
     int exp;
     int money;
@@ -29,8 +28,6 @@ public class PlayerInfo : MonoBehaviour
     {
         return new int[5] { level, money, men, combat, camel };
     }
-
-    // Update is called once per frame
     void Update()
     {
 
