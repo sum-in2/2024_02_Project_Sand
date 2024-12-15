@@ -8,6 +8,7 @@ using UnityEngine;
 public class PlayerInfo : MonoBehaviour
 {
     public string nowInCountry;
+    string playerName;
     int level;
     int exp;
     int money;

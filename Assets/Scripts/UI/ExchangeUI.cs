@@ -72,8 +72,7 @@ public class ExchangeUI : MonoBehaviour
         UpdateSlots(cellPlayerSlots, inven.exchangeItems);
         cellPricePlayer.text = CalculateValue(inven.exchangeItems).ToString();
 
-        // TODO : 인벤토리 정상화 필요
-        UpdateSlots(exchangeShopSlots, countryItems); //
+        UpdateSlots(exchangeShopSlots, countryItems);
         UpdateSlots(cellShopSlots, traderItems.items);
         cellPriceTrader.text = CalculateValue(traderItems.items).ToString();
 

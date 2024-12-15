@@ -33,6 +33,7 @@ public class Slot : MonoBehaviour
     }
     public void OnExchangeClick()
     {
+        Debug.Log(gameObject.name);
         if (item != null)
         {
             UIManager.Instance.ShowExchange(item);
