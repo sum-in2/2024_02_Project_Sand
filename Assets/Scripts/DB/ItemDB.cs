@@ -23,10 +23,6 @@ public class ItemDB : MonoBehaviour
 
     public List<Item> itemList = new List<Item>();
 
-    private void Start()
-    {
-    }
-
     public Item GetItemByName(string itemName)
     {
         return itemList.FirstOrDefault(item => item.itemName == itemName);

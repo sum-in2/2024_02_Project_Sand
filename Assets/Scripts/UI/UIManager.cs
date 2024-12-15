@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public ExchangePanel exchangePanel;
     public TopbarUI topbarUI;
     public CountryInfo countryInfo;
+    public TraderInCountry traderInCountry;
 
     private Stack<GameObject> uiStack = new Stack<GameObject>();
 
@@ -27,9 +28,10 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        countryInfo.gameObject.SetActive(false);
         topbarUI.gameObject.SetActive(true);
+
+        traderInCountry.gameObject.SetActive(false);
+        countryInfo.gameObject.SetActive(false);
         inventoryUI.gameObject.SetActive(false);
         itemInfoPanel.gameObject.SetActive(false);
         exchangeUI.gameObject.SetActive(false);
@@ -56,9 +58,9 @@ public class UIManager : MonoBehaviour
             CloseUI();
     }
 
-    public void OpenCountryInfo(TraderInventory traderInventory)
+    public void OpenCountryInfo(CountryItems countryItems)
     {
-        countryInfo.traderInventory = traderInventory;
+        countryInfo.countryItems = countryItems;
         OpenUI(countryInfo.gameObject);
     }
 
@@ -87,6 +89,13 @@ public class UIManager : MonoBehaviour
             OpenUI(itemInfoPanel.gameObject);
             itemInfoPanel.ShowInfo(item);
         }
+    }
+
+    public void OpenTraderInCountry(List<Item> items, Difficulty difficulty, string countryName)
+    {
+        OpenUI(traderInCountry.gameObject);
+        traderInCountry.InitTraders(items, difficulty, countryName);
+        exchangeUI.countryItems = items;
     }
 
     public void ShowExchange(Item item)

@@ -9,12 +9,15 @@ using UnityEngine.UI;
 public class ExchangeUI : MonoBehaviour
 {
     Inventory inven;
-    TraderInventory traderInventory;
-    public TraderInventory TraderInventory
+    TraderInfo traderItems;
+    public TraderInfo TraderItems
     {
-        get { return traderInventory; }
-        set { traderInventory = value; }
+        get { return traderItems; }
+        set { traderItems = value; }
     }
+
+    public List<Item> countryItems;
+
     [HideInInspector] public Slot[] exchangePlayerSlots;
     [HideInInspector] public Slot[] exchangeShopSlots;
     [HideInInspector] public Slot[] cellPlayerSlots;
@@ -67,11 +70,12 @@ public class ExchangeUI : MonoBehaviour
     {
         UpdateSlots(exchangePlayerSlots, inven.items);
         UpdateSlots(cellPlayerSlots, inven.exchangeItems);
-        UpdateSlots(exchangeShopSlots, traderInventory.traderItem);
-        UpdateSlots(cellShopSlots, traderInventory.traderExchange);
-
         cellPricePlayer.text = CalculateValue(inven.exchangeItems).ToString();
-        cellPriceTrader.text = CalculateValue(traderInventory.traderExchange).ToString();
+
+        // TODO : 인벤토리 정상화 필요
+        UpdateSlots(exchangeShopSlots, countryItems); //
+        UpdateSlots(cellShopSlots, traderItems.items);
+        cellPriceTrader.text = CalculateValue(traderItems.items).ToString();
 
         SettingScale();
     }
