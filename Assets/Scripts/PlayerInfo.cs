@@ -16,12 +16,12 @@ public class PlayerInfo : MonoBehaviour
     int camel;
     private void Awake()
     {
-        level = 4;
-        exp = 26150;
-        money = 26150;
-        men = 5;
-        combat = 6;
-        camel = 4;
+        level = 1;
+        exp = 0;
+        money = Inventory.instance.GetPlayerMoney();
+        men = 0;
+        combat = 0;
+        camel = 1;
     }
 
     public int[] getInfo()

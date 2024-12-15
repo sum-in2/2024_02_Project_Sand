@@ -19,6 +19,14 @@ public class Item
         this.itemValue = other.itemValue;
     }
 
+    public Item(Item other, int _itemCnt)
+    {
+        this.itemImage = other.itemImage;
+        this.itemName = other.itemName;
+        this.itemCnt = _itemCnt;
+        this.itemValue = other.itemValue;
+    }
+
     public Item(Sprite _itemImage, string _itemName, int _itemValue, int _itemCnt)
     {
         this.itemImage = _itemImage;

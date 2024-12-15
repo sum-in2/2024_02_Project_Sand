@@ -136,6 +136,9 @@ public class UIManager : MonoBehaviour
             currentUI.SetActive(false);
         }
         if (uiStack.Count == 0)
+        {
+            onChangePlayerInfo.Invoke();
             topbarUI.gameObject.SetActive(true);
+        }
     }
 }

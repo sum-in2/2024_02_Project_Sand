@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -14,6 +16,7 @@ public class Inventory : MonoBehaviour
             return;
         }
         instance = this;
+        Inventory.instance.PlayerStartItemSetting();
     }
     #endregion
 
@@ -43,6 +46,16 @@ public class Inventory : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public int GetPlayerMoney()
+    {
+        int i = 0;
+        foreach (Item item in items)
+        {
+            i += item.itemValue * item.itemCnt;
+        }
+        return i;
     }
 
     public bool ExchangeItems(Item _item)
@@ -105,5 +118,15 @@ public class Inventory : MonoBehaviour
             }
         }
         exchangeItems.Clear();
+    }
+
+    public void PlayerStartItemSetting()
+    {
+        // 진입 시 물자 ‘spices*40’, ‘books*5’, ‘tea*15’ 획득
+        var temp = ItemDB.instance.itemList.ToDictionary(item => item.itemName);
+
+        items.Add(new Item(temp["Spices"], 40));
+        items.Add(new Item(temp["Books"], 5));
+        items.Add(new Item(temp["Tea"], 15));
     }
 }

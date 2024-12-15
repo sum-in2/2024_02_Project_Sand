@@ -45,11 +45,11 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 329, y: 258, z: 285, w: 248}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -121,18 +121,216 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: trade-popup-paper_0
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 1284
+        width: 294
+        height: 288
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 299fdec30332cd94e8a8ac316ca474f7
+      internalID: -1977403734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trade-popup-paper_1
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 1272
+        width: 1923
+        height: 307
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4da74c2caeb6d434fb42de6f7a80210a
+      internalID: -206183950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trade-popup-paper_2
+      rect:
+        serializedVersion: 2
+        x: 2439
+        y: 1272
+        width: 277
+        height: 315
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1ccfc5efcb277b4a85a47bc79d4402a
+      internalID: 1165017081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trade-popup-paper_3
+      rect:
+        serializedVersion: 2
+        x: 2445
+        y: 417
+        width: 279
+        height: 825
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 504e2ad5a96b1f44787c920bb65560cf
+      internalID: -1712808493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trade-popup-paper_4
+      rect:
+        serializedVersion: 2
+        x: 2439
+        y: 83
+        width: 305
+        height: 296
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aebf5a4474b58264a804eb5e98e7507a
+      internalID: 1359668326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trade-popup-paper_5
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 39
+        width: 1655
+        height: 363
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 258d801db6a9ff94586ff40bf46e01f5
+      internalID: 1873979623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trade-popup-paper_6
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 48
+        width: 358
+        height: 444
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92102ad00808b054ba1a1d27e02fba4d
+      internalID: 111108348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trade-popup-paper_7
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 540
+        width: 247
+        height: 710
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8deca457b318f2143b7cc0d775a5b9fc
+      internalID: 1532316307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trade-popup-paper_8
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 477
+        width: 1827
+        height: 726
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3e70f2625f1d924ea6c76a501b395b8
+      internalID: 2038586200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      trade-popup-paper_0: -1977403734
+      trade-popup-paper_1: -206183950
+      trade-popup-paper_2: 1165017081
+      trade-popup-paper_3: -1712808493
+      trade-popup-paper_4: 1359668326
+      trade-popup-paper_5: 1873979623
+      trade-popup-paper_6: 111108348
+      trade-popup-paper_7: 1532316307
+      trade-popup-paper_8: 2038586200
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
